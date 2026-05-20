@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>창의적체험활동 포트폴리오</title>
+  <style>
+    :root {
+      --bg: #f4f6fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --danger: #dc2626;
+      --success: #15803d;
+      --soft-blue: #eff6ff;
+      --soft-yellow: #fffbeb;
+      --soft-green: #f0fdf4;
+      --shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 300px);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 18px 60px;
+    }
+
+    .hero {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      box-shadow: var(--shadow);
+      border-radius: 28px;
+      padding: 28px;
+      margin-bottom: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: clamp(27px, 4vw, 42px);
+      letter-spacing: -0.04em;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+
+    .login-card {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      margin: 0 0 18px;
+      font-size: 23px;
+      letter-spacing: -0.03em;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    input, select {
+      width: 100%;
+      border: 1px solid #d1d5db;
+      border-radius: 14px;
+      padding: 13px 14px;
+      font-size: 16px;
+      font-family: inherit;
+      color: var(--text);
+      background: #fff;
+      outline: none;
+      transition: border-color 0.16s, box-shadow 0.16s;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+    }
+
+    .role-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+      margin-bottom: 16px;
+    }
+
+    .role-option {
+      position: relative;
+    }
+
+    .role-option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .role-option span {
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 14px;
+      background: #fff;
+      cursor: pointer;
+      font-weight: 800;
+      transition: 0.16s;
+    }
+
+    .role-option input:checked + span {
+      border-color: var(--primary);
+      background: var(--soft-blue);
+      color: var(--primary);
+    }
+
+    button {
+      border: 0;
+      border-radius: 14px;
+      padding: 13px 17px;
+      font-size: 16px;
+      font-weight: 800;
+      font-family: inherit;
+      cursor: pointer;
+      transition: 0.16s;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-secondary {
+      background: #eef2ff;
+      color: #3730a3;
+    }
+
+    .btn-ghost {
+      background: #f3f4f6;
+      color: #374151;
+    }
+
+    .btn-danger {
+      background: #fef2f2;
+      color: #991b1b;
+    }
+
+    .btn-full {
+      width: 100%;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .message {
+      display: none;
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      font-weight: 700;
+    }
+
+    .message.show {
+      display: block;
+    }
+
+    .message.success {
+      background: #f0fdf4;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .message.error {
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+
+    .dashboard {
+      display: grid;
+      gap: 18px;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .user-box {
+      background: var(--soft-blue);
+      color: #1e40af;
+      border-radius: 16px;
+      padding: 13px 15px;
+      font-weight: 800;
+    }
+
+    .actions {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+
+    .filters {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 10px;
+      align-items: end;
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .summary {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .summary-item {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 13px;
+      font-size: 14px;
+      color: #374151;
+      font-weight: 700;
+    }
+
+    .entries {
+      display: grid;
+      gap: 12px;
+    }
+
+    .entry {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .entry-head {
+      padding: 16px 16px 13px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .entry-title {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: -0.03em;
+    }
+
+    .entry-meta {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 3px;
+    }
+
+    .entry-body {
+      padding: 15px 16px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .entry-part h4 {
+      margin: 0 0 5px;
+      color: var(--primary);
+      font-size: 14px;
+    }
+
+    .entry-part p {
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+      color: #374151;
+      font-size: 14px;
+    }
+
+    .empty {
+      color: var(--muted);
+      background: var(--soft-yellow);
+      border: 1px solid #fde68a;
+      border-radius: 16px;
+      padding: 16px;
+      font-size: 14px;
+    }
+
+    .loading {
+      opacity: 0.65;
+      pointer-events: none;
+    }
+
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 1000;
+    }
+
+    .modal {
+      width: min(480px, 100%);
+      background: #fff;
+      border-radius: 22px;
+      box-shadow: 0 24px 70px rgba(15, 23, 42, 0.28);
+      padding: 24px;
+      border: 1px solid var(--line);
+    }
+
+    .modal h2 {
+      margin: 0 0 8px;
+      letter-spacing: -0.03em;
+    }
+
+    .modal p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 9px;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 760px) {
+      .hero {
+        display: block;
+        padding: 22px;
+      }
+
+      .card {
+        padding: 18px;
+      }
+
+      .filters {
+        grid-template-columns: 1fr;
+      }
+
+      .role-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .hero, .login-card, .top-bar .actions, .filters, .btn-danger { display: none !important; }
+      .card { box-shadow: none; border: none; padding: 0; }
+      .page { max-width: none; padding: 0; }
+      .entry { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div>
+        <h1>창의적체험활동 포트폴리오</h1>
+        <p>로그인하면 내가 제출한 활동 기록을 볼 수 있습니다. 관리자는 전체 학생 기록을 확인할 수 있습니다.</p>
+      </div>
+    </header>
+
+    <section id="loginView" class="card login-card">
+      <h2 class="section-title">로그인</h2>
+
+      <div class="role-row">
+        <label class="role-option">
+          <input type="radio" name="role" value="student" checked />
+          <span>학생</span>
+        </label>
+        <label class="role-option">
+          <input type="radio" name="role" value="admin" />
+          <span>관리자</span>
+        </label>
+      </div>
+
+      <div class="field">
+        <label for="loginId">학번 또는 관리자 아이디</label>
+        <input type="text" id="loginId" placeholder="학생: 학번 / 관리자: admin" autocomplete="username" />
+      </div>
+
+      <div class="field">
+        <label for="loginPassword">비밀번호</label>
+        <input type="password" id="loginPassword" placeholder="비밀번호 입력" autocomplete="current-password" />
+      </div>
+
+      <button id="loginBtn" class="btn-primary btn-full">로그인</button>
+      <div id="loginMessage" class="message"></div>
+    </section>
+
+    <section id="dashboardView" class="dashboard hidden">
+      <div class="card">
+        <div class="top-bar">
+          <div>
+            <h2 class="section-title" style="margin-bottom: 8px;">포트폴리오 목록</h2>
+            <div id="userBox" class="user-box"></div>
+          </div>
+          <div class="actions">
+            <button id="writeBtn" class="btn-primary">새 글 작성하기</button>
+            <button id="changePasswordBtn" class="btn-secondary">비밀번호 변경</button>
+            <button id="printBtn" class="btn-secondary">인쇄/PDF 저장</button>
+            <button id="logoutBtn" class="btn-danger">로그아웃</button>
+          </div>
+        </div>
+
+        <div class="filters" style="margin-top: 18px;">
+          <div>
+            <label for="sortBy">정렬 기준</label>
+            <select id="sortBy">
+              <option value="dateDesc">날짜순: 최신순</option>
+              <option value="dateAsc">날짜순: 오래된순</option>
+              <option value="studentAsc">학번순: 오름차순</option>
+              <option value="studentDesc">학번순: 내림차순</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="typeFilter">활동 유형 필터</label>
+            <select id="typeFilter">
+              <option value="">전체</option>
+              <option value="학급특색활동">학급특색활동</option>
+              <option value="학급회의">학급회의</option>
+              <option value="독서활동">독서활동</option>
+              <option value="봉사활동">봉사활동</option>
+              <option value="기타">기타</option>
+            </select>
+          </div>
+
+          <button id="reloadBtn" class="btn-ghost">새로고침</button>
+        </div>
+
+        <div class="summary" id="summaryBox" style="margin-top: 16px;"></div>
+      </div>
+
+      <div id="entries" class="entries"></div>
+    </section>
+  
+    <div id="passwordModal" class="modal-backdrop hidden">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="passwordModalTitle">
+        <h2 id="passwordModalTitle">비밀번호 변경</h2>
+        <p>새 비밀번호는 숫자 4자리로만 설정할 수 있습니다.</p>
+
+        <div class="field">
+          <label for="currentPassword">현재 비밀번호</label>
+          <input type="password" id="currentPassword" inputmode="numeric" placeholder="현재 비밀번호" autocomplete="current-password" />
+        </div>
+
+        <div class="field">
+          <label for="newPassword">새 비밀번호</label>
+          <input type="password" id="newPassword" inputmode="numeric" maxlength="4" placeholder="숫자 4자리" autocomplete="new-password" />
+        </div>
+
+        <div class="field">
+          <label for="newPasswordConfirm">새 비밀번호 확인</label>
+          <input type="password" id="newPasswordConfirm" inputmode="numeric" maxlength="4" placeholder="숫자 4자리 다시 입력" autocomplete="new-password" />
+        </div>
+
+        <div id="passwordMessage" class="message"></div>
+
+        <div class="modal-actions">
+          <button id="cancelPasswordBtn" class="btn-ghost" type="button">취소</button>
+          <button id="submitPasswordBtn" class="btn-primary" type="button" style="flex: 0;">변경하기</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    /*
+      Apps Script 웹앱 URL을 넣으세요.
+      예: const WEB_APP_URL = "https://script.google.com/macros/s/배포ID/exec";
+    */
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxIF7YJlJ8bMuKfrRaQoi2iQm7sEahChAHboPZToUVAYdemDe8eXgSaEjfSu8mMuUghPw/exec";
+
+    const loginView = document.getElementById("loginView");
+    const dashboardView = document.getElementById("dashboardView");
+    const loginBtn = document.getElementById("loginBtn");
+    const loginMessage = document.getElementById("loginMessage");
+    const loginId = document.getElementById("loginId");
+    const loginPassword = document.getElementById("loginPassword");
+    const userBox = document.getElementById("userBox");
+    const entriesEl = document.getElementById("entries");
+    const summaryBox = document.getElementById("summaryBox");
+    const sortBy = document.getElementById("sortBy");
+    const typeFilter = document.getElementById("typeFilter");
+    const passwordModal = document.getElementById("passwordModal");
+    const passwordMessage = document.getElementById("passwordMessage");
+    const currentPassword = document.getElementById("currentPassword");
+    const newPassword = document.getElementById("newPassword");
+    const newPasswordConfirm = document.getElementById("newPasswordConfirm");
+
+    let session = null;
+    let entries = [];
+
+    loginBtn.addEventListener("click", login);
+    loginPassword.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") login();
+    });
+
+    document.getElementById("logoutBtn").addEventListener("click", logout);
+    document.getElementById("reloadBtn").addEventListener("click", loadEntries);
+    document.getElementById("printBtn").addEventListener("click", () => window.print());
+    document.getElementById("changePasswordBtn").addEventListener("click", openPasswordModal);
+    document.getElementById("cancelPasswordBtn").addEventListener("click", closePasswordModal);
+    document.getElementById("submitPasswordBtn").addEventListener("click", changePassword);
+    [currentPassword, newPassword, newPasswordConfirm].forEach((input) => {
+      input.addEventListener("input", () => {
+        input.value = input.value.replace(/[^0-9]/g, "").slice(0, 4);
+      });
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") changePassword();
+      });
+    });
+
+    document.getElementById("writeBtn").addEventListener("click", () => {
+      if (!session) return;
+      const params = new URLSearchParams({
+        token: session.token,
+        role: session.role,
+        studentId: session.studentId || "",
+        studentName: session.studentName || ""
+      });
+      window.location.href = `write.html?${params.toString()}`;
+    });
+
+    sortBy.addEventListener("change", renderEntries);
+    typeFilter.addEventListener("change", renderEntries);
+
+    restoreSession();
+
+    async function login() {
+      const role = document.querySelector("input[name='role']:checked").value;
+      const id = loginId.value.trim();
+      const password = loginPassword.value.trim();
+
+      if (!WEB_APP_URL) {
+        showLoginMessage("error", "HTML 파일 안의 WEB_APP_URL에 Apps Script 웹앱 주소를 먼저 넣어주세요.");
+        return;
+      }
+
+      if (!id || !password) {
+        showLoginMessage("error", "아이디와 비밀번호를 입력해주세요.");
+        return;
+      }
+
+      setLoading(loginView, true);
+
+      try {
+        const result = await apiPost({
+          action: "login",
+          role,
+          id,
+          password
+        });
+
+        if (!result.ok) {
+          showLoginMessage("error", result.message || "로그인에 실패했습니다.");
+          return;
+        }
+
+        session = {
+          token: result.token,
+          role: result.role,
+          studentId: result.studentId || "",
+          studentName: result.studentName || "",
+          displayName: result.displayName || ""
+        };
+
+        localStorage.setItem("creativePortfolioSession", JSON.stringify(session));
+        showDashboard();
+        await loadEntries();
+      } catch (err) {
+        console.error(err);
+        showLoginMessage("error", "로그인 중 오류가 발생했습니다. 웹앱 주소와 배포 권한을 확인해주세요.");
+      } finally {
+        setLoading(loginView, false);
+      }
+    }
+
+    async function loadEntries() {
+      if (!session) return;
+
+      entriesEl.innerHTML = `<div class="card empty">기록을 불러오는 중입니다.</div>`;
+
+      try {
+        const result = await apiPost({
+          action: "listEntries",
+          token: session.token
+        });
+
+        if (!result.ok) {
+          if (result.message && result.message.includes("세션")) {
+            logout();
+          }
+          entriesEl.innerHTML = `<div class="card empty">${escapeHtml(result.message || "기록을 불러오지 못했습니다.")}</div>`;
+          return;
+        }
+
+        entries = Array.isArray(result.entries) ? result.entries : [];
+        renderEntries();
+      } catch (err) {
+        console.error(err);
+        entriesEl.innerHTML = `<div class="card empty">기록을 불러오는 중 오류가 발생했습니다.</div>`;
+      }
+    }
+
+    function renderEntries() {
+      let list = [...entries];
+      const filter = typeFilter.value;
+
+      if (filter) {
+        list = list.filter((entry) => String(entry.activityType || "").startsWith(filter));
+      }
+
+      const sort = sortBy.value;
+      list.sort((a, b) => {
+        if (sort === "dateDesc") return String(b.activityDate || "").localeCompare(String(a.activityDate || ""));
+        if (sort === "dateAsc") return String(a.activityDate || "").localeCompare(String(b.activityDate || ""));
+        if (sort === "studentAsc") {
+          const s = String(a.studentId || "").localeCompare(String(b.studentId || ""));
+          return s || String(b.activityDate || "").localeCompare(String(a.activityDate || ""));
+        }
+        if (sort === "studentDesc") {
+          const s = String(b.studentId || "").localeCompare(String(a.studentId || ""));
+          return s || String(b.activityDate || "").localeCompare(String(a.activityDate || ""));
+        }
+        return 0;
+      });
+
+      summaryBox.innerHTML = `
+        <div class="summary-item">총 ${list.length}건</div>
+        <div class="summary-item">${session.role === "admin" ? "관리자 전체 보기" : "내 기록만 보기"}</div>
+        <div class="summary-item">정렬: ${escapeHtml(sortBy.options[sortBy.selectedIndex].text)}</div>
+      `;
+
+      if (!list.length) {
+        entriesEl.innerHTML = `<div class="card empty">표시할 기록이 없습니다. 새 글을 작성해보세요.</div>`;
+        return;
+      }
+
+      entriesEl.innerHTML = list.map((entry) => {
+        const meta = [
+          `${entry.studentId || ""} ${entry.studentName || ""}`.trim(),
+          entry.activityDate || "",
+          Array.isArray(entry.periods) ? `${entry.periods.join(", ")}교시` : (entry.periods || ""),
+          entry.activityType || ""
+        ].filter(Boolean).join(" · ");
+
+        return `
+          <article class="entry">
+            <div class="entry-head">
+              <div>
+                <h3 class="entry-title">${escapeHtml(entry.topic || "활동 주제명 없음")}</h3>
+                <div class="entry-meta">${escapeHtml(meta)}</div>
+              </div>
+              <div class="entry-meta">제출: ${escapeHtml(formatDateTime(entry.submittedAt))}</div>
+            </div>
+            <div class="entry-body">
+              ${entryPart("내가 한 활동", entry.activityContent)}
+              ${entryPart("내가 한 행동과 의견", entry.myAction)}
+              ${entryPart("인상 깊었던 타인의 행동과 의견", entry.peerAction)}
+              ${entryPart("느낀 점과 새로 알게 된 점", entry.reflection)}
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function entryPart(title, content) {
+      return `
+        <section class="entry-part">
+          <h4>${escapeHtml(title)}</h4>
+          <p>${escapeHtml(content || "")}</p>
+        </section>
+      `;
+    }
+
+    function showDashboard() {
+      loginView.classList.add("hidden");
+      dashboardView.classList.remove("hidden");
+
+      const changePasswordBtn = document.getElementById("changePasswordBtn");
+
+      if (session.role === "admin") {
+        userBox.textContent = `관리자 ${session.displayName || "admin"}님 · 전체 학생 기록 보기`;
+        changePasswordBtn.classList.add("hidden");
+      } else {
+        userBox.textContent = `${session.studentId} ${session.studentName}님의 포트폴리오`;
+        changePasswordBtn.classList.remove("hidden");
+      }
+    }
+
+    function logout() {
+      session = null;
+      entries = [];
+      localStorage.removeItem("creativePortfolioSession");
+      dashboardView.classList.add("hidden");
+      loginView.classList.remove("hidden");
+      loginPassword.value = "";
+      loginMessage.className = "message";
+      entriesEl.innerHTML = "";
+    }
+
+    function restoreSession() {
+      const raw = localStorage.getItem("creativePortfolioSession");
+      if (!raw) return;
+      try {
+        session = JSON.parse(raw);
+        showDashboard();
+        loadEntries();
+      } catch (err) {
+        localStorage.removeItem("creativePortfolioSession");
+      }
+    }
+
+
+    function openPasswordModal() {
+      if (!session || session.role !== "student") return;
+      currentPassword.value = "";
+      newPassword.value = "";
+      newPasswordConfirm.value = "";
+      passwordMessage.className = "message";
+      passwordModal.classList.remove("hidden");
+      currentPassword.focus();
+    }
+
+    function closePasswordModal() {
+      passwordModal.classList.add("hidden");
+    }
+
+    async function changePassword() {
+      if (!session || session.role !== "student") return;
+
+      const current = currentPassword.value.trim();
+      const next = newPassword.value.trim();
+      const confirm = newPasswordConfirm.value.trim();
+
+      if (!/^\d{4}$/.test(current)) {
+        showPasswordMessage("error", "현재 비밀번호를 숫자 4자리로 입력해주세요.");
+        return;
+      }
+
+      if (!/^\d{4}$/.test(next)) {
+        showPasswordMessage("error", "새 비밀번호는 숫자 4자리여야 합니다.");
+        return;
+      }
+
+      if (next !== confirm) {
+        showPasswordMessage("error", "새 비밀번호와 확인 입력이 일치하지 않습니다.");
+        return;
+      }
+
+      if (current === next) {
+        showPasswordMessage("error", "현재 비밀번호와 다른 숫자 4자리로 설정해주세요.");
+        return;
+      }
+
+      try {
+        const result = await apiPost({
+          action: "changePassword",
+          token: session.token,
+          currentPassword: current,
+          newPassword: next
+        });
+
+        if (!result.ok) {
+          showPasswordMessage("error", result.message || "비밀번호를 변경하지 못했습니다.");
+          return;
+        }
+
+        showPasswordMessage("success", "비밀번호가 변경되었습니다. 다시 로그인해주세요.");
+        setTimeout(() => {
+          closePasswordModal();
+          logout();
+        }, 900);
+      } catch (err) {
+        console.error(err);
+        showPasswordMessage("error", "비밀번호 변경 중 오류가 발생했습니다.");
+      }
+    }
+
+    function showPasswordMessage(type, text) {
+      passwordMessage.className = `message show ${type}`;
+      passwordMessage.textContent = text;
+    }
+
+    async function apiPost(payload) {
+      const res = await fetch(WEB_APP_URL, {
+        method: "POST",
+        body: JSON.stringify(payload)
+      });
+      return await res.json();
+    }
+
+    function showLoginMessage(type, text) {
+      loginMessage.className = `message show ${type}`;
+      loginMessage.textContent = text;
+    }
+
+    function setLoading(el, loading) {
+      el.classList.toggle("loading", loading);
+    }
+
+    function formatDateTime(value) {
+      if (!value) return "";
+      const d = new Date(value);
+      if (Number.isNaN(d.getTime())) return value;
+      return d.toLocaleString("ko-KR", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>창의적체험활동 포트폴리오 작성</title>
+  <style>
+    :root {
+      --bg: #f4f6fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --danger: #dc2626;
+      --success: #15803d;
+      --soft-blue: #eff6ff;
+      --soft-yellow: #fffbeb;
+      --shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 280px);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 28px 18px 60px;
+    }
+
+    .hero {
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      box-shadow: var(--shadow);
+      border-radius: 28px;
+      padding: 28px;
+      margin-bottom: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: clamp(26px, 4vw, 40px);
+      letter-spacing: -0.04em;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .form-card { padding: 24px; }
+
+    .preview-card {
+      position: sticky;
+      top: 16px;
+      padding: 22px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      font-size: 21px;
+      letter-spacing: -0.03em;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 30px;
+      height: 30px;
+      padding: 0 9px;
+      border-radius: 999px;
+      background: var(--soft-blue);
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .field { margin-bottom: 20px; }
+
+    .field label, .field .label {
+      display: block;
+      font-weight: 800;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .help {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 4px 0 8px;
+      font-weight: 500;
+    }
+
+    input[type="text"], input[type="date"], textarea, select {
+      width: 100%;
+      border: 1px solid #d1d5db;
+      border-radius: 14px;
+      padding: 13px 14px;
+      font-size: 16px;
+      font-family: inherit;
+      color: var(--text);
+      background: #fff;
+      outline: none;
+      transition: border-color 0.16s, box-shadow 0.16s;
+    }
+
+    input[readonly] {
+      background: #f8fafc;
+      color: #4b5563;
+      font-weight: 800;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .wide-textarea { min-height: 190px; }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .checks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .check-pill { position: relative; }
+
+    .check-pill input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .check-pill span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 48px;
+      padding: 10px 13px;
+      border: 1px solid #d1d5db;
+      border-radius: 999px;
+      background: #fff;
+      cursor: pointer;
+      font-weight: 700;
+      transition: 0.16s;
+      user-select: none;
+    }
+
+    .check-pill input:checked + span {
+      border-color: var(--primary);
+      background: var(--soft-blue);
+      color: var(--primary);
+    }
+
+    .type-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 9px;
+    }
+
+    .type-option { position: relative; }
+
+    .type-option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .type-option span {
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      padding: 12px 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 14px;
+      background: #fff;
+      cursor: pointer;
+      font-weight: 700;
+      transition: 0.16s;
+    }
+
+    .type-option input:checked + span {
+      border-color: var(--primary);
+      background: var(--soft-blue);
+      color: var(--primary);
+    }
+
+    .count {
+      text-align: right;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 5px;
+    }
+
+    .count.warn {
+      color: #b45309;
+      font-weight: 700;
+    }
+
+    .button-area {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 26px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+
+    button {
+      border: 0;
+      border-radius: 14px;
+      padding: 14px 18px;
+      font-size: 16px;
+      font-weight: 800;
+      font-family: inherit;
+      cursor: pointer;
+      transition: 0.16s;
+    }
+
+    .btn-primary {
+      flex: 1;
+      min-width: 180px;
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-primary:hover { background: var(--primary-dark); }
+
+    .btn-secondary {
+      background: #eef2ff;
+      color: #3730a3;
+    }
+
+    .btn-ghost {
+      background: #f3f4f6;
+      color: #374151;
+    }
+
+    .message {
+      display: none;
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      font-weight: 700;
+    }
+
+    .message.show { display: block; }
+
+    .message.success {
+      background: #f0fdf4;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .message.error {
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+
+    .preview-title {
+      margin: 0 0 4px;
+      font-size: 22px;
+      letter-spacing: -0.03em;
+    }
+
+    .preview-sub {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .portfolio {
+      display: grid;
+      gap: 12px;
+    }
+
+    .portfolio-item {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      background: #fff;
+    }
+
+    .portfolio-item h3 {
+      margin: 0 0 7px;
+      font-size: 15px;
+      color: var(--primary);
+    }
+
+    .portfolio-item p {
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+      color: #374151;
+      font-size: 14px;
+    }
+
+    .empty {
+      color: var(--muted);
+      background: var(--soft-yellow);
+      border: 1px solid #fde68a;
+      border-radius: 16px;
+      padding: 14px;
+      font-size: 14px;
+    }
+
+    .hidden { display: none; }
+    .loading { opacity: 0.65; pointer-events: none; }
+
+    @media (max-width: 860px) {
+      .layout { grid-template-columns: 1fr; }
+      .preview-card { position: static; }
+      .row { grid-template-columns: 1fr; }
+      .type-grid { grid-template-columns: 1fr; }
+      .hero { display: block; padding: 22px; }
+      .form-card, .preview-card { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div>
+        <h1>창의적체험활동 포트폴리오 작성</h1>
+        <p>활동 내용을 구체적으로 작성하면 오른쪽에 포트폴리오 형태로 정리되어 보입니다.</p>
+      </div>
+      <button id="backBtn" class="btn-ghost">목록으로 돌아가기</button>
+    </header>
+
+    <div class="layout">
+      <section class="card form-card">
+        <h2 class="section-title"><span class="badge">작성</span> 활동보고서 입력</h2>
+
+        <form id="portfolioForm" novalidate>
+          <div class="row">
+            <div class="field">
+              <label for="studentId">1. 학번</label>
+              <input type="text" id="studentId" name="studentId" readonly />
+            </div>
+            <div class="field">
+              <label for="studentName">이름</label>
+              <input type="text" id="studentName" name="studentName" readonly />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="activityDate">2. 날짜 선택</label>
+              <input type="date" id="activityDate" name="activityDate" required />
+            </div>
+
+            <div class="field">
+              <div class="label">교시 선택</div>
+              <div class="checks" id="periodChecks">
+                <label class="check-pill"><input type="checkbox" name="periods" value="1" /><span>1교시</span></label>
+                <label class="check-pill"><input type="checkbox" name="periods" value="2" /><span>2교시</span></label>
+                <label class="check-pill"><input type="checkbox" name="periods" value="3" /><span>3교시</span></label>
+                <label class="check-pill"><input type="checkbox" name="periods" value="4" /><span>4교시</span></label>
+                <label class="check-pill"><input type="checkbox" name="periods" value="5" /><span>5교시</span></label>
+                <label class="check-pill"><input type="checkbox" name="periods" value="6" /><span>6교시</span></label>
+                <label class="check-pill"><input type="checkbox" name="periods" value="7" /><span>7교시</span></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="label">3. 활동 유형 선택</div>
+            <div class="type-grid">
+              <label class="type-option"><input type="radio" name="activityType" value="학급특색활동" required /><span>학급특색활동</span></label>
+              <label class="type-option"><input type="radio" name="activityType" value="학급회의" /><span>학급회의</span></label>
+              <label class="type-option"><input type="radio" name="activityType" value="독서활동" /><span>독서활동</span></label>
+              <label class="type-option"><input type="radio" name="activityType" value="봉사활동" /><span>봉사활동</span></label>
+              <label class="type-option"><input type="radio" name="activityType" value="기타" /><span>기타</span></label>
+            </div>
+            <div id="otherTypeWrap" class="hidden" style="margin-top: 10px;">
+              <input type="text" id="otherType" name="otherType" placeholder="기타 활동 유형을 입력하세요." />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="topic">4. 활동 주제명</label>
+            <input type="text" id="topic" name="topic" placeholder="예: 학급 환경 개선 활동, 진로 독서 나눔, 학급회의 안건 논의 등" required />
+          </div>
+
+          <div class="field">
+            <label for="activityContent">5. 내가 한 활동을 구체적으로 작성해주세요. <br /><span class="help">(독서의 경우 읽은 내용)</span></label>
+            <textarea id="activityContent" name="activityContent" class="wide-textarea" placeholder="활동에서 어떤 내용을 다루었는지, 내가 어떤 과정을 거쳐 참여했는지 구체적으로 작성하세요." required></textarea>
+            <div class="count" data-count-for="activityContent">0자</div>
+          </div>
+
+          <div class="field">
+            <label for="myAction">6. 활동 중 특히 내가 한 행동, 제시한 의견 등을 사소한 거라도 구체적으로 작성해주세요.</label>
+            <textarea id="myAction" name="myAction" class="wide-textarea" placeholder="예: 자료를 조사함, 친구 의견을 정리함, 특정 안건을 제안함, 역할을 나누는 데 기여함 등" required></textarea>
+            <div class="count" data-count-for="myAction">0자</div>
+          </div>
+
+          <div class="field">
+            <label for="peerAction">7. 활동 중 특히 누군가 인상깊게 한 행동, 제시한 의견 등이 있으면 사소한 거라도 구체적으로 작성해주세요. <br /><span class="help">(없으면 없음)</span></label>
+            <textarea id="peerAction" name="peerAction" placeholder="인상 깊었던 친구의 행동이나 의견을 적어주세요. 해당 사항이 없으면 '없음'이라고 작성하세요." required></textarea>
+            <div class="count" data-count-for="peerAction">0자</div>
+          </div>
+
+          <div class="field">
+            <label for="reflection">8. 활동을 통해 느낀 점이나 새로 알게 된 점이 있으면 구체적으로 작성해주세요.</label>
+            <textarea id="reflection" name="reflection" class="wide-textarea" placeholder="활동 후 알게 된 점, 생각이 달라진 점, 더 궁금해진 점 등을 구체적으로 작성하세요." required></textarea>
+            <div class="count" data-count-for="reflection">0자</div>
+          </div>
+
+          <div class="button-area">
+            <button type="submit" class="btn-primary">제출하기</button>
+            <button type="button" class="btn-secondary" id="saveDraftBtn">임시저장</button>
+            <button type="button" class="btn-ghost" id="clearBtn">초기화</button>
+          </div>
+
+          <div id="message" class="message"></div>
+        </form>
+      </section>
+
+      <aside class="card preview-card">
+        <h2 class="preview-title">나의 포트폴리오 미리보기</h2>
+        <p class="preview-sub">입력한 내용이 실시간으로 정리됩니다.</p>
+        <div id="portfolioPreview" class="portfolio">
+          <div class="empty">아직 작성된 내용이 없습니다. 왼쪽 입력칸에 내용을 작성하면 이곳에 보입니다.</div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    /*
+      Apps Script 웹앱 URL을 넣으세요.
+      index.html과 같은 주소를 넣으면 됩니다.
+    */
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxIF7YJlJ8bMuKfrRaQoi2iQm7sEahChAHboPZToUVAYdemDe8eXgSaEjfSu8mMuUghPw/exec";
+
+    const params = new URLSearchParams(window.location.search);
+    const session = {
+      token: params.get("token") || "",
+      role: params.get("role") || "",
+      studentId: params.get("studentId") || "",
+      studentName: params.get("studentName") || ""
+    };
+
+    const form = document.getElementById("portfolioForm");
+    const otherTypeWrap = document.getElementById("otherTypeWrap");
+    const otherTypeInput = document.getElementById("otherType");
+    const message = document.getElementById("message");
+    const preview = document.getElementById("portfolioPreview");
+
+    const textFields = ["activityContent", "myAction", "peerAction", "reflection"];
+    const allPreviewFields = [
+      ["기본 정보", "basic"],
+      ["활동 주제명", "topic"],
+      ["내가 한 활동", "activityContent"],
+      ["내가 한 행동과 의견", "myAction"],
+      ["인상 깊었던 타인의 행동과 의견", "peerAction"],
+      ["느낀 점과 새로 알게 된 점", "reflection"]
+    ];
+
+    document.getElementById("activityDate").valueAsDate = new Date();
+
+    if (!session.token || !session.studentId || !session.studentName) {
+      alert("로그인 정보가 없습니다. 첫 페이지에서 다시 로그인해주세요.");
+      window.location.href = "index.html";
+    }
+
+    document.getElementById("studentId").value = session.studentId;
+    document.getElementById("studentName").value = session.studentName;
+
+    document.getElementById("backBtn").addEventListener("click", () => {
+      window.location.href = "index.html";
+    });
+
+    document.querySelectorAll("input, textarea").forEach((el) => {
+      el.addEventListener("input", () => {
+        updateCounts();
+        updatePreview();
+        saveDraftSilently();
+      });
+      el.addEventListener("change", () => {
+        handleActivityTypeChange();
+        updatePreview();
+        saveDraftSilently();
+      });
+    });
+
+    document.getElementById("saveDraftBtn").addEventListener("click", () => {
+      saveDraft();
+      showMessage("success", "임시저장되었습니다. 같은 브라우저에서는 다시 열어도 내용이 유지됩니다.");
+    });
+
+    document.getElementById("clearBtn").addEventListener("click", () => {
+      if (!confirm("작성 중인 내용을 모두 지울까요?")) return;
+      localStorage.removeItem(draftKey());
+      form.reset();
+      document.getElementById("studentId").value = session.studentId;
+      document.getElementById("studentName").value = session.studentName;
+      document.getElementById("activityDate").valueAsDate = new Date();
+      handleActivityTypeChange();
+      updateCounts();
+      updatePreview();
+      showMessage("success", "입력 내용이 초기화되었습니다.");
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const data = collectData();
+      const validation = validateData(data);
+
+      if (!validation.ok) {
+        showMessage("error", validation.message);
+        return;
+      }
+
+      if (!WEB_APP_URL) {
+        showMessage("error", "HTML 파일 안의 WEB_APP_URL에 Apps Script 웹앱 주소를 먼저 넣어주세요.");
+        return;
+      }
+
+      form.classList.add("loading");
+
+      try {
+        const result = await apiPost({
+          action: "submitEntry",
+          token: session.token,
+          entry: data
+        });
+
+        if (!result.ok) {
+          showMessage("error", result.message || "제출에 실패했습니다.");
+          return;
+        }
+
+        localStorage.removeItem(draftKey());
+        showMessage("success", "제출되었습니다. 목록 화면에서 내가 제출한 글을 확인할 수 있습니다.");
+
+        setTimeout(() => {
+          window.location.href = "index.html";
+        }, 900);
+
+      } catch (err) {
+        console.error(err);
+        showMessage("error", "제출 중 오류가 발생했습니다. 인터넷 연결 또는 웹앱 주소를 확인해주세요.");
+      } finally {
+        form.classList.remove("loading");
+      }
+    });
+
+    function handleActivityTypeChange() {
+      const selected = document.querySelector("input[name='activityType']:checked")?.value;
+      if (selected === "기타") {
+        otherTypeWrap.classList.remove("hidden");
+        otherTypeInput.required = true;
+      } else {
+        otherTypeWrap.classList.add("hidden");
+        otherTypeInput.required = false;
+        otherTypeInput.value = "";
+      }
+    }
+
+    function updateCounts() {
+      textFields.forEach((id) => {
+        const el = document.getElementById(id);
+        const countEl = document.querySelector(`[data-count-for="${id}"]`);
+        const len = el.value.trim().length;
+        countEl.textContent = `${len}자`;
+        countEl.classList.toggle("warn", len > 0 && len < 50);
+      });
+    }
+
+    function collectData() {
+      const selectedType = document.querySelector("input[name='activityType']:checked")?.value || "";
+      const periods = [...document.querySelectorAll("input[name='periods']:checked")].map((el) => el.value);
+
+      return {
+        submittedAt: new Date().toISOString(),
+        studentId: session.studentId,
+        studentName: session.studentName,
+        activityDate: document.getElementById("activityDate").value,
+        periods: periods,
+        activityType: selectedType === "기타" ? `기타: ${otherTypeInput.value.trim()}` : selectedType,
+        topic: document.getElementById("topic").value.trim(),
+        activityContent: document.getElementById("activityContent").value.trim(),
+        myAction: document.getElementById("myAction").value.trim(),
+        peerAction: document.getElementById("peerAction").value.trim(),
+        reflection: document.getElementById("reflection").value.trim()
+      };
+    }
+
+    function validateData(data) {
+      if (!data.studentId || !data.studentName) return { ok: false, message: "로그인 정보가 없습니다. 다시 로그인해주세요." };
+      if (!data.activityDate) return { ok: false, message: "날짜를 선택해주세요." };
+      if (data.periods.length === 0) return { ok: false, message: "교시를 하나 이상 선택해주세요." };
+      if (!data.activityType) return { ok: false, message: "활동 유형을 선택해주세요." };
+      if (data.activityType === "기타:" || data.activityType === "기타: ") return { ok: false, message: "기타 활동 유형을 입력해주세요." };
+      if (!data.topic) return { ok: false, message: "활동 주제명을 입력해주세요." };
+      if (!data.activityContent) return { ok: false, message: "내가 한 활동을 구체적으로 작성해주세요." };
+      if (!data.myAction) return { ok: false, message: "내가 한 행동이나 제시한 의견을 작성해주세요." };
+      if (!data.peerAction) return { ok: false, message: "인상 깊었던 행동이나 의견이 없으면 '없음'이라고 작성해주세요." };
+      if (!data.reflection) return { ok: false, message: "느낀 점이나 새로 알게 된 점을 작성해주세요." };
+      return { ok: true, message: "" };
+    }
+
+    function updatePreview() {
+      const data = collectData();
+      const basicText = [
+        `${data.studentId} ${data.studentName}`,
+        data.activityDate ? `날짜: ${data.activityDate}` : "",
+        data.periods.length ? `교시: ${data.periods.join(", ")}교시` : "",
+        data.activityType ? `활동 유형: ${data.activityType}` : ""
+      ].filter(Boolean).join("\n");
+
+      const values = {
+        basic: basicText,
+        topic: data.topic,
+        activityContent: data.activityContent,
+        myAction: data.myAction,
+        peerAction: data.peerAction,
+        reflection: data.reflection
+      };
+
+      const hasAny = Object.values(values).some((v) => v && v.trim());
+
+      if (!hasAny) {
+        preview.innerHTML = `<div class="empty">아직 작성된 내용이 없습니다. 왼쪽 입력칸에 내용을 작성하면 이곳에 보입니다.</div>`;
+        return;
+      }
+
+      preview.innerHTML = allPreviewFields.map(([title, key]) => {
+        const content = values[key] || "아직 입력하지 않음";
+        return `
+          <article class="portfolio-item">
+            <h3>${escapeHtml(title)}</h3>
+            <p>${escapeHtml(content)}</p>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function saveDraftSilently() {
+      localStorage.setItem(draftKey(), JSON.stringify(collectData()));
+    }
+
+    function saveDraft() {
+      saveDraftSilently();
+    }
+
+    function loadDraft() {
+      const raw = localStorage.getItem(draftKey());
+      if (!raw) return;
+
+      try {
+        const data = JSON.parse(raw);
+        document.getElementById("activityDate").value = data.activityDate || new Date().toISOString().slice(0, 10);
+        document.getElementById("topic").value = data.topic || "";
+        document.getElementById("activityContent").value = data.activityContent || "";
+        document.getElementById("myAction").value = data.myAction || "";
+        document.getElementById("peerAction").value = data.peerAction || "";
+        document.getElementById("reflection").value = data.reflection || "";
+
+        document.querySelectorAll("input[name='periods']").forEach((el) => {
+          el.checked = Array.isArray(data.periods) && data.periods.includes(el.value);
+        });
+
+        const typeValue = data.activityType || "";
+        let matched = false;
+        document.querySelectorAll("input[name='activityType']").forEach((el) => {
+          if (el.value === typeValue) {
+            el.checked = true;
+            matched = true;
+          }
+        });
+
+        if (!matched && typeValue.startsWith("기타:")) {
+          document.querySelector("input[name='activityType'][value='기타']").checked = true;
+          otherTypeInput.value = typeValue.replace("기타:", "").trim();
+        }
+
+        handleActivityTypeChange();
+        updateCounts();
+        updatePreview();
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async function apiPost(payload) {
+      const res = await fetch(WEB_APP_URL, {
+        method: "POST",
+        body: JSON.stringify(payload)
+      });
+      return await res.json();
+    }
+
+    function draftKey() {
+      return `creativePortfolioDraft_${session.studentId}`;
+    }
+
+    function showMessage(type, text) {
+      message.className = `message show ${type}`;
+      message.textContent = text;
+      message.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    loadDraft();
+    handleActivityTypeChange();
+    updateCounts();
+    updatePreview();
+  </script>
+</body>
+</html>

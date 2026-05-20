@@ -396,6 +396,188 @@
       }
     }
 
+
+    /* 모바일 가독성 강화 */
+    @media (max-width: 760px) {
+      body {
+        background: #f8fafc;
+        font-size: 17px;
+      }
+
+      .page {
+        padding: 12px 10px 36px;
+      }
+
+      .hero {
+        border-radius: 20px;
+        margin-bottom: 12px;
+        padding: 18px;
+      }
+
+      .hero h1 {
+        font-size: 28px;
+        line-height: 1.18;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .card {
+        border-radius: 18px;
+        padding: 16px;
+        box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+      }
+
+      .login-card {
+        max-width: none;
+      }
+
+      .section-title {
+        font-size: 22px;
+        line-height: 1.25;
+      }
+
+      label {
+        font-size: 16px;
+      }
+
+      input, select {
+        min-height: 54px;
+        font-size: 17px;
+        border-radius: 15px;
+        padding: 14px 15px;
+      }
+
+      button {
+        min-height: 52px;
+        font-size: 16px;
+        border-radius: 15px;
+      }
+
+      .role-row {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .role-option span {
+        min-height: 54px;
+        font-size: 16px;
+      }
+
+      .top-bar {
+        display: block;
+      }
+
+      .user-box {
+        margin-bottom: 12px;
+        font-size: 15px;
+        line-height: 1.5;
+      }
+
+      .actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .actions button {
+        width: 100%;
+        padding: 12px 8px;
+      }
+
+      #writeBtn {
+        grid-column: 1 / -1;
+        font-size: 17px;
+      }
+
+      .filters {
+        grid-template-columns: 1fr;
+        padding: 12px;
+        gap: 12px;
+      }
+
+      .summary {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 7px;
+      }
+
+      .summary-item {
+        border-radius: 14px;
+        font-size: 14px;
+        padding: 9px 11px;
+      }
+
+      .entry {
+        border-radius: 18px;
+      }
+
+      .entry-head {
+        display: block;
+        padding: 15px;
+      }
+
+      .entry-title {
+        font-size: 19px;
+        line-height: 1.35;
+      }
+
+      .entry-meta {
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .entry-body {
+        padding: 14px 15px 16px;
+        gap: 14px;
+      }
+
+      .entry-part {
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: #ffffff;
+      }
+
+      .entry-part h4 {
+        font-size: 15px;
+        margin-bottom: 6px;
+      }
+
+      .entry-part p {
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      .modal {
+        padding: 18px;
+        border-radius: 20px;
+      }
+
+      .modal-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .modal-actions button {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .role-row {
+        grid-template-columns: 1fr;
+      }
+
+      .actions {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 25px;
+      }
+    }
+
     @media print {
       body { background: #fff; }
       .hero, .login-card, .top-bar .actions, .filters, .btn-danger { display: none !important; }
@@ -403,6 +585,259 @@
       .page { max-width: none; padding: 0; }
       .entry { break-inside: avoid; }
     }
+  
+    .login-visual {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .visual-circle {
+      width: 84px;
+      height: 84px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+      color: #5f78e8;
+      background: radial-gradient(circle at 35% 30%, #ffffff 0%, #eef2ff 60%, #dbe8ff 100%);
+      box-shadow: inset 0 2px 0 rgba(255,255,255,.8), 0 12px 24px rgba(95,120,232,.18);
+      border: 6px solid rgba(255,255,255,.9);
+    }
+
+    .visual-mini {
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      color: #5f78e8;
+      background: #eef2ff;
+      border-radius: 999px;
+    }
+
+    .panel-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #eef2ff;
+      color: #5f78e8;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .08em;
+    }
+
+    .mobile-dock {
+      display: none;
+    }
+
+    body {
+      background: linear-gradient(180deg, #7e9fda 0px, #8ca9df 210px, #eef3fb 210px, #f4f7fc 100%);
+    }
+
+    .page {
+      max-width: 1120px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, rgba(95,120,232,.95), rgba(133,151,232,.95));
+      color: #fff;
+      border: none;
+      box-shadow: 0 24px 50px rgba(81,105,202,.22);
+    }
+
+    .hero p {
+      color: rgba(255,255,255,.88);
+    }
+
+    .card {
+      border: 1px solid rgba(226,232,240,.9);
+      box-shadow: 0 20px 40px rgba(24,39,75,.08);
+    }
+
+    .login-card {
+      margin-top: -40px;
+      position: relative;
+      z-index: 2;
+      padding-top: 26px;
+    }
+
+    .section-title {
+      text-align: center;
+      letter-spacing: -0.04em;
+    }
+
+    .field label {
+      color: #334155;
+    }
+
+    input, select {
+      background: #f8fafc;
+      border: 1px solid #dbe3f3;
+      border-radius: 999px;
+    }
+
+    .role-option span,
+    .btn-primary,
+    .btn-secondary,
+    .btn-ghost,
+    .btn-danger {
+      border-radius: 999px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #5f78e8, #738ef6);
+      box-shadow: 0 12px 22px rgba(95,120,232,.25);
+    }
+
+    .btn-secondary {
+      background: #edf2ff;
+      color: #5069dc;
+    }
+
+    .btn-danger {
+      background: #fff1f2;
+    }
+
+    .filters,
+    .entry,
+    .user-box {
+      border-radius: 22px;
+    }
+
+    .entry-head {
+      background: linear-gradient(180deg, #f8fbff 0%, #f5f8fd 100%);
+    }
+
+    .entry-part h4 {
+      color: #5f78e8;
+    }
+
+    @media (max-width: 760px) {
+      body {
+        background: linear-gradient(180deg, #7e9fda 0px, #8ca9df 180px, #eef3fb 180px, #f4f7fc 100%);
+      }
+
+      .page {
+        max-width: 430px;
+        padding: 10px 12px 80px;
+      }
+
+      .hero {
+        min-height: 150px;
+        border-radius: 28px;
+        padding: 18px 18px 44px;
+        margin-bottom: 0;
+      }
+
+      .hero h1 {
+        font-size: 24px;
+        max-width: 240px;
+      }
+
+      .hero p {
+        font-size: 13px;
+        max-width: 280px;
+      }
+
+      .login-card,
+      #dashboardView .card:first-child {
+        margin-top: -28px;
+      }
+
+      .card {
+        border-radius: 28px;
+        padding: 18px;
+      }
+
+      .login-card {
+        padding-top: 22px;
+      }
+
+      .visual-circle {
+        width: 76px;
+        height: 76px;
+        font-size: 30px;
+      }
+
+      .section-title {
+        font-size: 22px;
+      }
+
+      input, select {
+        min-height: 52px;
+        font-size: 16px;
+        padding: 13px 16px;
+      }
+
+      .role-option span {
+        min-height: 50px;
+      }
+
+      .top-bar .section-title {
+        text-align: left;
+      }
+
+      .actions {
+        gap: 10px;
+      }
+
+      .actions button {
+        min-height: 48px;
+        font-size: 14px;
+      }
+
+      .entry {
+        overflow: visible;
+      }
+
+      .entry-head {
+        border-radius: 22px 22px 0 0;
+      }
+
+      .entry-body {
+        padding-top: 12px;
+      }
+
+      .entry-part {
+        background: #f9fbff;
+      }
+
+      .mobile-dock {
+        position: fixed;
+        left: 50%;
+        bottom: 10px;
+        transform: translateX(-50%);
+        width: min(92vw, 390px);
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        padding: 9px 12px;
+        background: rgba(255,255,255,.92);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(226,232,240,.8);
+        box-shadow: 0 18px 40px rgba(15,23,42,.14);
+        border-radius: 999px;
+        z-index: 20;
+      }
+
+      .mobile-dock span {
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        color: #6b7fdc;
+        font-size: 18px;
+        background: #f5f7ff;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -415,7 +850,7 @@
     </header>
 
     <section id="loginView" class="card login-card">
-      <h2 class="section-title">로그인</h2>
+      <div class="login-visual"><div class="visual-circle">👤</div><div class="visual-mini">Creative Portfolio</div></div><h2 class="section-title">로그인</h2>
 
       <div class="role-row">
         <label class="role-option">
@@ -446,7 +881,7 @@
       <div class="card">
         <div class="top-bar">
           <div>
-            <h2 class="section-title" style="margin-bottom: 8px;">포트폴리오 목록</h2>
+            <div class="panel-label">MY PORTFOLIO</div><h2 class="section-title" style="margin-bottom: 8px;">포트폴리오 목록</h2>
             <div id="userBox" class="user-box"></div>
           </div>
           <div class="actions">
@@ -475,6 +910,7 @@
               <option value="학급특색활동">학급특색활동</option>
               <option value="학급회의">학급회의</option>
               <option value="독서활동">독서활동</option>
+              <option value="봉사활동">봉사활동</option>
               <option value="동아리활동">동아리활동</option>
               <option value="기타">기타</option>
             </select>
@@ -518,7 +954,8 @@
       </div>
     </div>
 
-  </main>
+    <div class="mobile-dock" aria-hidden="true"><span>⌂</span><span>☰</span><span>✎</span><span>⚙</span></div>
+</main>
 
   <script>
     /*

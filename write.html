@@ -360,13 +360,442 @@
       .hero { display: block; padding: 22px; }
       .form-card, .preview-card { padding: 18px; }
     }
+
+    /* 모바일 가독성 강화 */
+    @media (max-width: 860px) {
+      body {
+        background: #f8fafc;
+        font-size: 17px;
+      }
+
+      .page {
+        padding: 12px 10px 40px;
+      }
+
+      .hero {
+        border-radius: 20px;
+        margin-bottom: 12px;
+        padding: 18px;
+      }
+
+      .hero h1 {
+        font-size: 27px;
+        line-height: 1.18;
+      }
+
+      .hero p {
+        font-size: 15px;
+        line-height: 1.55;
+      }
+
+      #backBtn {
+        width: 100%;
+        margin-top: 14px;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .card {
+        border-radius: 18px;
+        box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+      }
+
+      .form-card,
+      .preview-card {
+        padding: 16px;
+      }
+
+      .preview-card {
+        position: static;
+        order: -1;
+      }
+
+      .preview-title {
+        font-size: 21px;
+      }
+
+      .preview-sub {
+        font-size: 14px;
+      }
+
+      .section-title {
+        font-size: 21px;
+        line-height: 1.3;
+      }
+
+      .row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .field {
+        margin-bottom: 18px;
+      }
+
+      .field label,
+      .field .label {
+        font-size: 16px;
+        line-height: 1.45;
+      }
+
+      .help {
+        display: inline-block;
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      input[type="text"],
+      input[type="date"],
+      textarea,
+      select {
+        min-height: 54px;
+        font-size: 17px;
+        border-radius: 15px;
+        padding: 14px 15px;
+      }
+
+      textarea {
+        min-height: 180px;
+        line-height: 1.7;
+      }
+
+      .wide-textarea {
+        min-height: 230px;
+      }
+
+      .checks {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+      }
+
+      .check-pill span {
+        width: 100%;
+        min-width: 0;
+        min-height: 48px;
+        padding: 10px 4px;
+        font-size: 15px;
+      }
+
+      .type-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .type-option span {
+        min-height: 54px;
+        padding: 12px 10px;
+        font-size: 15px;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .count {
+        font-size: 13px;
+      }
+
+      .button-area {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-top: 18px;
+      }
+
+      button {
+        width: 100%;
+        min-height: 54px;
+        font-size: 17px;
+        border-radius: 15px;
+      }
+
+      .btn-primary {
+        min-width: 0;
+      }
+
+      .portfolio {
+        gap: 10px;
+      }
+
+      .portfolio-item {
+        padding: 12px;
+        border-radius: 14px;
+      }
+
+      .portfolio-item h3 {
+        font-size: 15px;
+      }
+
+      .portfolio-item p {
+        font-size: 15px;
+        line-height: 1.65;
+        max-height: 150px;
+        overflow: auto;
+      }
+
+      .message {
+        font-size: 15px;
+        line-height: 1.5;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .checks {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .type-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 24px;
+      }
+
+      textarea {
+        min-height: 200px;
+      }
+
+      .wide-textarea {
+        min-height: 250px;
+      }
+    }
+
+  
+    .hero-icon {
+      width: 62px;
+      height: 62px;
+      margin-bottom: 10px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      background: rgba(255,255,255,.18);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.35);
+    }
+
+    .panel-label {
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #eef2ff;
+      color: #5f78e8;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .08em;
+    }
+
+    .mobile-dock {
+      display: none;
+    }
+
+    body {
+      background: linear-gradient(180deg, #7e9fda 0px, #8ca9df 220px, #eef3fb 220px, #f4f7fc 100%);
+    }
+
+    .page {
+      max-width: 1100px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, rgba(95,120,232,.95), rgba(133,151,232,.95));
+      color: #fff;
+      border: none;
+      box-shadow: 0 24px 50px rgba(81,105,202,.22);
+    }
+
+    .hero p {
+      color: rgba(255,255,255,.88);
+    }
+
+    .card {
+      border: 1px solid rgba(226,232,240,.9);
+      box-shadow: 0 20px 40px rgba(24,39,75,.08);
+    }
+
+    .form-card,
+    .preview-card {
+      border-radius: 28px;
+      overflow: hidden;
+    }
+
+    .badge,
+    button,
+    .check-pill span,
+    .type-option span,
+    input[type="text"], input[type="date"], textarea, select {
+      border-radius: 18px;
+    }
+
+    input[type="text"], input[type="date"], textarea, select {
+      background: #f8fafc;
+      border-color: #dbe3f3;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #5f78e8, #738ef6);
+      box-shadow: 0 12px 22px rgba(95,120,232,.25);
+    }
+
+    .btn-secondary {
+      background: #edf2ff;
+      color: #5069dc;
+    }
+
+    .btn-ghost {
+      background: rgba(255,255,255,.9);
+    }
+
+    .portfolio-item {
+      background: #f9fbff;
+      border-radius: 18px;
+    }
+
+    .count {
+      font-weight: 700;
+    }
+
+    @media (max-width: 860px) {
+      body {
+        background: linear-gradient(180deg, #7e9fda 0px, #8ca9df 180px, #eef3fb 180px, #f4f7fc 100%);
+      }
+
+      .page {
+        max-width: 430px;
+        padding: 10px 12px 90px;
+      }
+
+      .hero {
+        display: block;
+        min-height: 160px;
+        border-radius: 28px;
+        padding: 18px 18px 50px;
+        margin-bottom: 0;
+      }
+
+      .hero-icon {
+        width: 58px;
+        height: 58px;
+        border-radius: 16px;
+        font-size: 26px;
+      }
+
+      .hero h1 {
+        font-size: 24px;
+        line-height: 1.18;
+        max-width: 260px;
+      }
+
+      .hero p {
+        font-size: 13px;
+        max-width: 300px;
+      }
+
+      #backBtn {
+        width: 100%;
+        margin-top: 16px;
+        min-height: 46px;
+        border-radius: 999px;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .preview-card,
+      .form-card {
+        margin-top: -28px;
+        position: relative;
+        z-index: 2;
+        padding: 18px;
+        border-radius: 28px;
+      }
+
+      .form-card {
+        margin-top: 0;
+      }
+
+      .preview-card {
+        order: -1;
+      }
+
+      .section-title,
+      .preview-title {
+        font-size: 21px;
+      }
+
+      input[type="text"], input[type="date"], textarea, select {
+        min-height: 52px;
+        font-size: 16px;
+      }
+
+      textarea {
+        min-height: 170px;
+      }
+
+      .wide-textarea {
+        min-height: 210px;
+      }
+
+      .check-pill span,
+      .type-option span {
+        min-height: 50px;
+      }
+
+      .button-area {
+        position: sticky;
+        bottom: 70px;
+        background: linear-gradient(180deg, rgba(244,247,252,0) 0%, rgba(244,247,252,.9) 18%, rgba(244,247,252,1) 100%);
+        padding-top: 12px;
+      }
+
+      .portfolio-item p {
+        font-size: 14px;
+      }
+
+      .mobile-dock {
+        position: fixed;
+        left: 50%;
+        bottom: 10px;
+        transform: translateX(-50%);
+        width: min(92vw, 390px);
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        padding: 9px 12px;
+        background: rgba(255,255,255,.92);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(226,232,240,.8);
+        box-shadow: 0 18px 40px rgba(15,23,42,.14);
+        border-radius: 999px;
+        z-index: 20;
+      }
+
+      .mobile-dock span {
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        color: #6b7fdc;
+        font-size: 18px;
+        background: #f5f7ff;
+      }
+    }
+
   </style>
 </head>
 <body>
   <main class="page">
     <header class="hero">
       <div>
-        <h1>창의적체험활동 포트폴리오 작성</h1>
+        <div class="hero-icon">✎</div><h1>창의적체험활동 포트폴리오 작성</h1>
         <p>활동 내용을 구체적으로 작성하면 오른쪽에 포트폴리오 형태로 정리되어 보입니다.</p>
       </div>
       <button id="backBtn" class="btn-ghost">목록으로 돌아가기</button>
@@ -374,7 +803,7 @@
 
     <div class="layout">
       <section class="card form-card">
-        <h2 class="section-title"><span class="badge">작성</span> 활동보고서 입력</h2>
+        <div class="panel-label">WRITE NOW</div><h2 class="section-title"><span class="badge">작성</span> 활동보고서 입력</h2>
 
         <form id="portfolioForm" novalidate>
           <div class="row">
@@ -414,6 +843,7 @@
               <label class="type-option"><input type="radio" name="activityType" value="학급특색활동" required /><span>학급특색활동</span></label>
               <label class="type-option"><input type="radio" name="activityType" value="학급회의" /><span>학급회의</span></label>
               <label class="type-option"><input type="radio" name="activityType" value="독서활동" /><span>독서활동</span></label>
+              <label class="type-option"><input type="radio" name="activityType" value="봉사활동" /><span>봉사활동</span></label>
               <label class="type-option"><input type="radio" name="activityType" value="동아리활동" /><span>동아리활동</span></label>
               <label class="type-option"><input type="radio" name="activityType" value="기타" /><span>기타</span></label>
             </div>
@@ -462,14 +892,15 @@
       </section>
 
       <aside class="card preview-card">
-        <h2 class="preview-title">나의 포트폴리오 미리보기</h2>
+        <div class="panel-label">LIVE PREVIEW</div><h2 class="preview-title">나의 포트폴리오 미리보기</h2>
         <p class="preview-sub">입력한 내용이 실시간으로 정리됩니다.</p>
         <div id="portfolioPreview" class="portfolio">
           <div class="empty">아직 작성된 내용이 없습니다. 왼쪽 입력칸에 내용을 작성하면 이곳에 보입니다.</div>
         </div>
       </aside>
     </div>
-  </main>
+    <div class="mobile-dock" aria-hidden="true"><span>⌂</span><span>☰</span><span>✎</span><span>★</span></div>
+</main>
 
   <script>
     /*
